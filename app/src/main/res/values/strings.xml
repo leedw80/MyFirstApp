@@ -3,6 +3,7 @@
     <string name="app_name">My First App</string>
     <string name="edit_message">Enter a message</string>
     <string name="edit_phonenumber">Enter a phone number</string>
+    <string name="button_delete">Del</string>
     <string name="button_send">Send</string>
     <string name="text_freecoupon">Free coupon</string>
     <string name="text_20percent">20%</string>
