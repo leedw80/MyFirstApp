@@ -5,6 +5,7 @@
     <string name="edit_phonenumber">Enter a phone number</string>
     <string name="button_delete">Del</string>
     <string name="button_send">Send</string>
+    <string name="button_previous">Previous</string>
     <string name="text_freecoupon">Free coupon</string>
     <string name="text_20percent">20%</string>
     <string name="text_50percent">50%</string>
