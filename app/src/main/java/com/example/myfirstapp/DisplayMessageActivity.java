@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends AppCompatActivity {
+    DBHelper dbHelper;
+    String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +23,19 @@ public class DisplayMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_message);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         String count = intent.getStringExtra(MainActivity.EXTRA_COUNT);
 
         ImageView imageView = (ImageView) findViewById(R.id.img_display);
 
 
-        if (Integer.parseInt(count) >=  10 ) {
+        if (Integer.parseInt(count) >= 10) {
             imageView.setImageResource(R.mipmap.stampgo100);
-        }else if(Integer.parseInt(count) >= 8 && Integer.parseInt(count) < 10 ) {
+        } else if (Integer.parseInt(count) >= 8 && Integer.parseInt(count) < 10) {
             imageView.setImageResource(R.mipmap.stampgo80);
-        }else if(Integer.parseInt(count) >= 5 && Integer.parseInt(count) < 8 ) {
+        } else if (Integer.parseInt(count) >= 5 && Integer.parseInt(count) < 8) {
             imageView.setImageResource(R.mipmap.stampgo50);
-        }else {
+        } else {
             imageView.setImageResource(R.mipmap.stampgo20);
         }
 
@@ -49,9 +51,30 @@ public class DisplayMessageActivity extends AppCompatActivity {
             button.setEnabled(false);
         }
 
+        dbHelper = new DBHelper(getApplicationContext(), "stampgo.db", null, 1);
+    }
+
+    public void countMessage(View view) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(DisplayMessageActivity.this);
+        alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();     //닫기
+
+                dbHelper.delete(message);
+                previousIntent();
+
+            }
+        });
+        alert.setMessage("Use coupon.");
+        alert.show();
     }
 
     public void sendMessage(View view) {
+        previousIntent();
+    }
+
+    void previousIntent() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
