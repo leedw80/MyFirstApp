@@ -42,31 +42,38 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.e("dwlee", "onClick:");
-                if (stringBuilder.length() == 13) {
-                    TextView textView = (TextView) findViewById(R.id.edit_message);
-                    message = textView.getText().toString();
+                    if (stringBuilder.length() == 13) {
+                        TextView textView = (TextView) findViewById(R.id.edit_message);
+                        message = textView.getText().toString();
+                        count = dbHelper.getResult(message);
+                        if (Integer.parseInt(count) < 10) {
+                            dbHelper.insert(fDate, message, 123);
+                            count = dbHelper.getResult(message);
 
-                    int price = 123;
+                            result.setText(count);
 
-                    dbHelper.insert(fDate, message, price);
-                    count = dbHelper.getResult(message);
-                    result.setText(count);
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            intent.putExtra(EXTRA_COUNT, count);
+                            startActivity(intent);
+                        }else{
+                            result.setText(count);
 
-                    intent.putExtra(EXTRA_MESSAGE, message);
-                    intent.putExtra(EXTRA_COUNT, count);
-                    startActivity(intent);
-                } else {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                    alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();     //닫기
+                            intent.putExtra(EXTRA_MESSAGE, message);
+                            intent.putExtra(EXTRA_COUNT, count);
+                            startActivity(intent);
                         }
-                    });
-                    alert.setMessage("Please again.");
-                    alert.show();
+                    } else {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                        alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();     //닫기
+                            }
+                        });
+                        alert.setMessage("Please again.");
+                        alert.show();
+                    }
                 }
-            }
         });
 
 
@@ -78,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     TextView textView = (TextView) findViewById(R.id.edit_message);
                     message = textView.getText().toString();
                     count = dbHelper.getResult(message);
+
                     result.setText(count);
 
                     intent.putExtra(EXTRA_MESSAGE, message);

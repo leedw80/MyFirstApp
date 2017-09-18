@@ -60,7 +60,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/selector"
             android:onClick="num7"
             android:text="7"
             android:textSize="40dp" />

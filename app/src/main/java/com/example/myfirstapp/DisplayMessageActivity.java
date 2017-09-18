@@ -43,7 +43,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.btn_count);
         button.setText(count);
 
-        if (Integer.parseInt(count) > 10) {
+        if (Integer.parseInt(count) == 10) {
             button.setEnabled(true);
         } else {
             button.setEnabled(false);
