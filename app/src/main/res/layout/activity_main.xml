@@ -64,6 +64,18 @@
             android:text="7"
             android:textSize="40dp" />
 
+        <!--
+        <Button
+            android:id="@+id/btn_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="num7"
+            android:text="7"
+            android:textSize="40dp"
+            android:background="@drawable/selector" />
+            -->
+
         <Button
             android:id="@+id/btn_8"
             android:layout_width="0dp"
