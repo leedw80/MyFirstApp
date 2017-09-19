@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Intent intent = new Intent(this, DisplayMessageActivity.class);
-        //////////////////////////////////////////////////////////////////////////////////////
+
         Button send = (Button) findViewById(R.id.btn_send);
         send.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         });
 
-
         Button search = (Button) findViewById(R.id.btn_search);
         search.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -104,18 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //////////////////////////////////////////////////////////////////////////////////////
-
-        /*
-        String sdcardPath = null;
-        String sdcardStat = Environment.getExternalStorageState();
-        if(sdcardStat.equals(Environment.MEDIA_MOUNTED))
-        {
-            sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-        }
-
-        Log.e("dwlee","sdcardPath:"+sdcardPath);
-        */
 
         dbHelper = new DBHelper(getApplicationContext(), "stampgo.db", null, 1);
 
@@ -136,52 +123,10 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.edit_message);
         textView.setText(stringBuilder.append("010-").toString());
     }
-    /*
-    public void sendMessage(View view) {
-        Log.e("dwlee","sendMessage:");
-        if (stringBuilder.length() == 13) {
-            Intent intent = new Intent(this, DisplayMessageActivity.class);
-            TextView textView = (TextView) findViewById(R.id.edit_message);
-            String message = textView.getText().toString();
-            intent.putExtra(EXTRA_MESSAGE, message);
-            startActivity(intent);
-        } else {
-            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-            alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();     //닫기
-                }
-            });
-            alert.setMessage("Please again.");
-            alert.show();
-        }
-    }
-
-    public void searchMessage(View view) {
-        if (stringBuilder.length() == 13) {
-            Intent intent = new Intent(this, DisplayMessageActivity.class);
-            TextView textView = (TextView) findViewById(R.id.edit_message);
-            message = textView.getText().toString();
-            intent.putExtra(EXTRA_MESSAGE, message);
-            startActivity(intent);
-        } else {
-            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-            alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();     //닫기
-                }
-            });
-            alert.setMessage("Please again.");
-            alert.show();
-        }
-    }
-    */
 
     public void num7(View view) {
         TextView textView = (TextView) findViewById(R.id.edit_message);
-        Log.e("dwlee", "stringBuilder.length():" + stringBuilder.length());
+        //Log.e("dwlee", "stringBuilder.length():" + stringBuilder.length());
         if (stringBuilder.length() == 7) {
             textView.setText(stringBuilder.append("7-").toString());
         } else {
